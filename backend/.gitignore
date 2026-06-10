@@ -1,0 +1,41 @@
+# IDEA 配置文件
+.idea/
+*.iml
+*.iws
+*.ipr
+*.sw?
+
+# VS Code 配置文件
+.vscode/
+
+# Maven 构建产物与缓存
+target/
+.mvn/
+dependency-reduced-pom.xml
+build.log
+
+# Maven Wrapper（可选，不想提交就忽略）
+mvnw
+mvnw.cmd
+
+# 临时文件、日志、系统文件
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# 编译相关
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 其他 IDE 或构建工具相关
+.factorypath
+.apt_generated
+.springBeans
+.sts4-cache

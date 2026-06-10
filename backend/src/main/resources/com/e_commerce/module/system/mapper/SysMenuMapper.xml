@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.e_commerce.module.system.mapper.SysMenuMapper">
+
+    <!-- ============= 用户菜单（通过角色，多表关联） ============= -->
+
+    <select id="getMenusByUserId" resultType="com.e_commerce.module.system.entity.SysMenu">
+        select distinct m.id,
+        m.menu_name,
+        m.parent_id,
+        m.path,
+        m.icon,
+        m.sort,
+        m.type
+        from sys_menu m
+        join sys_role_menu rm on m.id = rm.menu_id
+        join sys_user_role ur on rm.role_id = ur.role_id
+        where ur.user_id = #{userId}
+        order by m.sort asc
+    </select>
+
+    <select id="getCurrentUserMenus" resultType="com.e_commerce.module.system.entity.SysMenu">
+        select distinct m.id,
+        m.menu_name,
+        m.parent_id,
+        m.path,
+        m.icon,
+        m.sort,
+        m.type
+        from sys_menu m
+        join sys_role_menu rm on m.id = rm.menu_id
+        join sys_user_role ur on rm.role_id = ur.role_id
+        where ur.user_id = #{userId}
+        order by m.sort asc
+    </select>
+
+</mapper>
