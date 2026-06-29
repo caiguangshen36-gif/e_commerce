@@ -9,22 +9,22 @@ import java.io.InputStream;
 
 public class AliOssUtil {
     private static final String ENDPOINT = "https://oss-cn-beijing.aliyuncs.com";
-    private static final String ACCESS_KEY_ID = "LTAI5tCGJmEcyqQHAEjUUmfm";
-    private static final String SECRET_ACCESS_KEY = "TWSrvQyJKmCVHY5VeV6zvafU4FH5bv";
-    private static final String BUCKET_NAME = "e-commerce-ha";
+    private static final String ACCESS_KEY_ID = "your-access-key-id";
+    private static final String SECRET_ACCESS_KEY = "your-secret-access-key";
+    private static final String BUCKET_NAME = "your-bucket-name";
 
-    //上传文件,返回文件的公网访问地址
-    public static String uploadFile(String objectName, InputStream inputStream){
+    // 上传文件,返回文件的公网访问地址
+    public static String uploadFile(String objectName, InputStream inputStream) {
         // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(ENDPOINT,ACCESS_KEY_ID,SECRET_ACCESS_KEY);
-        //公文访问地址
+        OSS ossClient = new OSSClientBuilder().build(ENDPOINT, ACCESS_KEY_ID, SECRET_ACCESS_KEY);
+        // 公文访问地址
         String url = "";
         try {
             // 创建存储空间。
             ossClient.createBucket(BUCKET_NAME);
             ossClient.putObject(BUCKET_NAME, objectName, inputStream);
 
-            url = "https://"+BUCKET_NAME+"."+ENDPOINT.substring(ENDPOINT.lastIndexOf("/")+1)+"/"+objectName;
+            url = "https://" + BUCKET_NAME + "." + ENDPOINT.substring(ENDPOINT.lastIndexOf("/") + 1) + "/" + objectName;
 
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
