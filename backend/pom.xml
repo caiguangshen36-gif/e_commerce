@@ -187,6 +187,19 @@
             <version>2.2.0</version>
         </dependency>
 
+        <!-- [Q4优化1] Spring Retry：AI调用失败自动重试 -->
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+        </dependency>
+
+        <!-- [Q4优化3] Resilience4j：AI调用熔断降级，防止雪崩 -->
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-spring-boot3</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
     </dependencies>
 
 

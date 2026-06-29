@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/e_commerce?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-    username: root
-    password: your_password
+    username: your_username_here
+    password: your_password_here
     hikari:
       maximum-pool-size: 10
   elasticsearch:
@@ -21,7 +21,7 @@ spring:
   # Spring AI 通义千问配置（通过 OpenAI 兼容接口）
   ai:
     openai:
-      api-key: sk-your-api
+      api-key: your_api_key_here
       base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:
@@ -33,6 +33,16 @@ spring:
     # 配置 VectorStore 使用 Simple 类型
     vectorstore:
       type: simple
+
+# [Q4优化3] Resilience4j 熔断器配置——AI调用失败率超50%自动熔断，防止雪崩
+resilience4j:
+  circuitbreaker:
+    instances:
+      aiGenerate:
+        sliding-window-size: 10 # 最近10次调用为一个统计窗口
+        failure-rate-threshold: 50 # 失败率>50%触发熔断（百分比）
+        wait-duration-in-open-state: 30s # 熔断后等待30秒再尝试半开恢复
+        permitted-number-of-calls-in-half-open-state: 2 # 半开状态最多放行2个请求试探
 
 server:
   port: 8080
